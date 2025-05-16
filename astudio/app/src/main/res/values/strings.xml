@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Events Manager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_events_manager">Welcome to Events Manager!</string>
+    <string name="u2302">⌂</string>
+    <string name="view_events">View Events</string>
+    <string name="u2b05">⬅</string>
+    <string name="u23f9">⏹</string>
+    <string name="my_events">My Events</string>
+    <string name="saved_events">Saved Events</string>
+    <string name="create_event">Create Event</string>
+    <string name="manage_invites">Manage Invites</string>
+    <string name="menu">☰</string>
+    <string name="search_event">Search Event</string>
+    <string name="u2699">⚙</string>
+    <string name="welcome_msg_txt">Welcome to Event Manager</string>
+    <string name="event_name">Event Name:</string>
+    <string name="date">Date:</string>
+    <string name="time">Time:</string>
+    <string name="location">Location:</string>
+    <string name="description">Description:</string>
+    <string name="public_private">Public:</string>
+    <string name="author">Author:</string>
+    <string name="missing_author_field_error">Please enter the author of event</string>
+    <string name="missing_name_field_error">Please enter the name of event</string>
+    <string name="missing_time_field_error">Please enter the time of event</string>
+    <string name="missing_date_field_error">Please enter the date of event</string>
+    <string name="missing_description_field_error">Please enter the description of event</string>
+    <string name="missing_location_field_error">Please enter the location of event</string>
+    <string name="missing_invites_field_error">Please add people to invite to this event</string>
+    <string name="saved" />
+    <string name="no_events_found">No events</string>
+    <string name="vassar_logo_desc" />
+
+
+    <string name="username_label">Username:</string>
+    <string name="username_hint">Type in your username</string>
+    <string name="password_label">Password:</string>
+    <string name="password_hint">Type in your password</string>
+    <string name="register_button">Register</string>
+    <string name="login_button">Login</string>
+    <string name="registration_success_msg">Registration successful. Please sign in now.</string>
+    <string name="user_already_exists_msg">Registration failed. Username already exists.</string>
+    <string name="invalid_credentials_msg">Signin failed. Invalid credentials.</string>
+</resources>
