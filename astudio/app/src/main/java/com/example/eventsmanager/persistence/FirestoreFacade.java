@@ -231,6 +231,18 @@ public class FirestoreFacade implements PersistenceFacade {
     }
 
     @Override
+    public void removeInvitationFromUser(String username, String eventId) {
+        FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(username)
+                .collection("invitations")
+                .document(eventId)
+                .delete()
+                .addOnSuccessListener(aVoid -> Log.i("Events Manager", "Invitation removed from user"))
+                .addOnFailureListener(e -> Log.e("Events Manager", "Failed to remove invitation", e));
+    }
+
+    @Override
     public void loadInvitationsForUser(String username, @NonNull DataListener<List<Map<String, Object>>> listener) {
         FirebaseFirestore.getInstance()
                 .collection("users")

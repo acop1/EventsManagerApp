@@ -82,6 +82,8 @@ public interface PersistenceFacade {
 
     void sendInvitationToUser(String username, String eventId, String eventTitle, String author);
 
+    void removeInvitationFromUser(String username, String eventId);
+
     void loadInvitationsForUser(String username, @NonNull DataListener<List<Map<String, Object>>> listener);
 
     /**

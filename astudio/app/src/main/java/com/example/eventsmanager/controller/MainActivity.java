@@ -40,6 +40,7 @@ import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -255,17 +256,35 @@ public class MainActivity extends AppCompatActivity implements EventsMenuUI.List
 
     @Override
     public void onRemoveInvites(String selectedEvent, String[] invitees) {
-        // Second step - actually remove the invites
         PrivateEventItem event = eventsModel.getPrivateEvents().get(selectedEvent);
-        String eventId = event.getId();
         if (event != null) {
-            event.removeInvitations(invitees);
-            Map<String, Object> invites = new HashMap<>();
-            invites.put("invitations", new ArrayList<>(event.getInvitations()));
-            this.persistenceFacade.updatePrivateEventItem(eventId, invites);
+            String eventId = event.getId();
+            // Make a copy of current invitations to avoid concurrent modification
+            HashSet<String> currentInvitations = new HashSet<>(event.getInvitations());
+
+            // Remove the invitees
+            for (String invitee : invitees) {
+                currentInvitations.remove(invitee);
+            }
+
+            // Update the event locally
+            event.getInvitations().clear();
+            event.getInvitations().addAll(currentInvitations);
+
+            // Prepare update for Firestore
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("invitations", new ArrayList<>(currentInvitations));
+
+            // Update in Firestore
+            this.persistenceFacade.updatePrivateEventItem(eventId, updates);
+
+            // Also remove the invitation from the user's invitations collection
+            for (String invitee : invitees) {
+                this.persistenceFacade.removeInvitationFromUser(invitee, eventId);
+            }
+
             updateAllDisplays();
         }
-
     }
 
     public void onEventsMenu() {
